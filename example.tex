@@ -19,10 +19,18 @@
 % 자간 및 줄간격을 위해 kotex 사용 
 \usepackage[hangul]{kotex}
 
-% 한글을 지원하는 폰트 설정
+
 \usepackage{fontspec}
-\setmainfont{Noto Serif CJK KR}   % 본문에 사용할 세리프 폰트
-\setsansfont{Noto Sans CJK KR}    % 스탯 블록 등에 사용할 산세리프 폰트
+
+% 한글을 지원하는 폰트 설정
+\setmainfont{Noto Serif CJK KR}[            % 본문에 사용할 세리프 폰트
+  AutoFakeSlant       = 0.2,                % 한글 폰트는 이탤릭이 없어서 폰트를 변형해서 사용
+  BoldItalicFeatures  = { FakeSlant = 0.2 } % 굵은 이탤릭도 폰트를 변형해서 사용
+]
+\setsansfont[]{Noto Sans CJK KR}[           % 스탯 블록 등에 사용할 산세리프 폰트
+  AutoFakeSlant       = 0.2,                % 한글 폰트는 이탤릭이 없어서 폰트를 변형해서 사용
+  BoldItalicFeatures  = { FakeSlant = 0.2 } % 굵은 이탤릭도 폰트를 변형해서 사용
+]
 
 \usepackage[utf8]{inputenc}
 \usepackage[singlelinecheck=false]{caption}
