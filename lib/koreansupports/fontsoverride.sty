@@ -38,6 +38,9 @@
   BoldItalicFeatures = { FakeSlant = 0.2 }
 ]
 
+% Font for Korean drop capital
+\newfontfamily\koreandropcap[Path = lib/koreansupports/fonts/]{NanumMyeongjo-Bold.ttf}
+
 % Font for latin small caps
 \newfontfamily\latinscfont[Path = lib/koreansupports/fonts/]{IMFellGreatPrimerSC-Regular.ttf}
 
@@ -74,7 +77,7 @@
   {
     % Drop caps Korean
     drop-cap-korean-family .tl_set:N          = \l__dnd_drop_cap_korean_family_tl,
-    drop-cap-korean-family .initial:n         = \fontspec{NanumMyeongjo},
+    drop-cap-korean-family .initial:n         = \koreandropcap,
     drop-cap-korean-family .value_required:n  = true,
     drop-cap-korean-style .tl_set:N           = \l__dnd_drop_cap_korean_style_tl,
     drop-cap-korean-style .initial:n          = \bfseries \color{dropkor},
