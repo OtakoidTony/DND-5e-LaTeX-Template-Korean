@@ -1,0 +1,5 @@
+\ExplSyntaxOn
+
+\RequirePackage{lib/koreansupports/fontsoverride}
+\RequirePackage{lib/koreansupports/formatsoverride}
+\RequirePackage{lib/koreansupports/stringsoverride}
