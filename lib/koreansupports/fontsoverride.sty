@@ -1,0 +1,111 @@
+\ExplSyntaxOn
+
+\RequirePackage{fontspec}
+\RequirePackage{lettrine}
+
+% Main font: HCR Batang
+\setmainfont{HANBatang}[
+  Extension = .ttf,
+  Path = lib/koreansupports/fonts/,
+  BoldFont = *B,
+  % Since Korean font families have no italic fonts, fake slant
+  BoldItalicFont = *B,
+  AutoFakeSlant = 0.2,
+  BoldItalicFeatures = { FakeSlant = 0.2 }
+]
+
+% Sans serif font: Noto Sans
+\setsansfont{NotoSansKR}[
+  Extension = .otf,
+  Path = lib/koreansupports/fonts/,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  % Since Korean font families have no italic fonts, fake slant
+  BoldItalicFont = *-Bold,
+  AutoFakeSlant = 0.2,
+  BoldItalicFeatures = { FakeSlant = 0.2 }
+]
+
+% Font for chapter and section headings
+\newfontfamily\headingfont{NotoSerifKR}[
+  Extension = .otf,
+  Path = lib/koreansupports/fonts/,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  % Since Korean font families have no italic fonts, fake slant
+  BoldItalicFont = *-Bold,
+  AutoFakeSlant = 0.2,
+  BoldItalicFeatures = { FakeSlant = 0.2 }
+]
+
+% Font for latin small caps
+\newfontfamily\latinscfont[Path = lib/koreansupports/fonts/]{IMFellGreatPrimerSC-Regular.ttf}
+
+% Override font families and styles for headings
+\DndSetFonts[
+  % Section heading font and style
+  part-family = \headingfont,
+  part-style = \color{titlered} \Huge \scshape \bfseries,
+  chapter-family = \headingfont,
+  chapter-style = \linespread{1.2} \color{titlered} \Huge \scshape \bfseries,
+  section-family = \headingfont,
+  section-style = \linespread{1.2} \color{titlered} \huge \scshape \RaggedRight \bfseries,
+  subsection-family = \headingfont,
+  subsection-style = \linespread{1.5} \color{titlered} \Large \scshape \RaggedRight \bfseries,
+  subsubsection-family = \headingfont,
+  subsubsection-style = \linespread{1.2} \color{titlered} \large \scshape \RaggedRight \bfseries,
+  % Gillius2 does not support Korean.
+  table-body-family = \sffamily,
+  comment-body-family = \sffamily,
+  sidebar-body-family = \sffamily,
+  readaloud-family = \sffamily,
+  % Heading font with bfseries for table of contents
+  toc-part-family = \headingfont,
+  toc-part-style = \Large \scshape \color{titlered} \bfseries,
+  toc-chapter-family = \headingfont,
+  toc-section-family = \headingfont,
+  % Stat block fonts
+  stat-block-title-family = \headingfont,
+  stat-block-body-family = \sffamily
+]
+
+% New keys for new macros
+\keys_define:nn { dnd / fonts }
+  {
+    % Drop caps Korean
+    drop-cap-korean-family .tl_set:N          = \l__dnd_drop_cap_korean_family_tl,
+    drop-cap-korean-family .initial:n         = \fontspec{NanumMyeongjo},
+    drop-cap-korean-family .value_required:n  = true,
+    drop-cap-korean-style .tl_set:N           = \l__dnd_drop_cap_korean_style_tl,
+    drop-cap-korean-style .initial:n          = \bfseries \color{dropkor},
+    drop-cap-korean-style .value_required:n   = true,
+    % Small caps font for latin letters in heading
+    small-caps-latin-family .tl_set:N         = \l__dnd_small_caps_latin_family_tl,
+    small-caps-latin-family .initial:n        = \latinscfont,
+    small-caps-latin-family .value_required:n = true,
+    small-caps-latin-style .tl_set:N          = \l__dnd_small_caps_latin_style_tl,
+    small-caps-latin-style .initial:n         = \scshape,
+    small-caps-latin-style .value_required:n  = true,
+  }
+
+% Small caps styling for latin letters in section headings
+\NewDocumentCommand{\DndFontLatinSC}{}
+  { \l__dnd_small_caps_latin_family_tl \l__dnd_small_caps_latin_style_tl}
+
+% Drop Caps Korean font color
+\definecolor {dropkor}   {HTML} {556B2F}
+
+% Drop capital for Korean letter
+\NewDocumentCommand{\DndDropCapLineKo}{ O{} m m }
+  {
+    \renewcommand{\LettrineFontHook}
+      { \l__dnd_drop_cap_korean_family_tl \l__dnd_drop_cap_korean_style_tl }
+    \lettrine[
+        lines   = 3,
+        depth   = 0,
+        findent = \l__dnd_space_dim,
+        nindent = 0pt,
+      ]
+      {#2}
+      {#3}
+  }

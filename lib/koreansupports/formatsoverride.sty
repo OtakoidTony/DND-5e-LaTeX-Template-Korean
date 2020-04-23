@@ -1,0 +1,109 @@
+\ExplSyntaxOn
+
+% Space between lines
+\linespread{1.2}
+
+% Part labels format
+\NewDocumentCommand{\KoPartFormat}{}
+  {
+    제{\thepart}부
+  }
+
+% Chapter labels format
+\NewDocumentCommand{\KoChapterFormat}{}
+  {
+    제{\thechapter}장
+  }
+
+% Table of contents name to Korean
+\renewcommand{\contentsname}{목차}
+
+% Section labels to Korean
+\bool_if:NT \l__dnd_layout_bool
+{
+  % Part
+  \titleformat {\part}
+    [display]
+    { \centering \DndFontPart } % format
+    { \DndContour{\KoPartFormat} } % label
+    {2ex} % sep
+    { \DndContour } % before-code
+
+  % Chapter
+  \titleformat {\chapter}
+    { \DndFontChapter } % format
+    { \DndContour{\KoChapterFormat :} } % label
+    { \wordsep } % sep
+    {\DndContour} % before-code
+}
+
+% Footer's chapter label to Korean
+\cs_if_free:NF \chaptermark
+{
+  \renewcommand*{\chaptermark}[1]
+    {
+      \markboth
+        {
+          \MakeUppercase
+            {
+              \ifnum\value{secnumdepth}>-1
+                {\KoChapterFormat} ~|~
+              \fi
+              #1
+            }
+        }
+        {}
+    }
+}
+
+% Comment box linespread is to small
+\DeclareTColorBox {__dnd_comment} {o}
+  {
+    before~upper =
+      {
+        \bool_if:NT \l__dnd_layout_bool
+          {
+            \bool_if:NF \l__dnd_justified_bool
+              { \RaggedRight }
+          }
+      },
+    code         = {\linespread{1.2}}, % All those lines for change this single value...
+    frame~hidden,
+    boxrule      = 0pt,
+    breakable,
+    enhanced,
+    before~skip  = 13pt plus 4pt minus 4pt,
+    toptitle     = 2pt,
+    boxsep       = 3pt,
+    left         = 6pt,
+    right        = 6pt,
+    top          = 0pt,
+    bottom       = 2pt,
+    sharp~corners,
+    fonttitle    = \DndFontCommentTitle,
+    fontupper    = \DndFontCommentBody,
+    fontlower    = \DndFontCommentBody,
+    parbox       = false,
+    coltitle     = black,
+    after~skip   = 13pt plus 4pt minus 4pt,
+    #1,
+  }
+
+% Table of contents labels to Korean
+\bool_if:NT \l__dnd_layout_bool
+{
+  \titlecontents{part}
+    [0pt] % left
+    { \addvspace{.06in} \DndFontTocPart } % above-code
+    { {\KoPartFormat} :~ } % numbered-entry-format
+    {} % numberless-entry-format
+    {} % filler-page-format
+    [ \addvspace{-.03in} \titleline{ \color{titlegold} \titlerule[1pt] } \addvspace{.05in } ] % below-code
+
+  \titlecontents{chapter}
+    [0pt] % left
+    { \addvspace{.1in} \DndFontTocChapter } % above-code
+    { {\KoChapterFormat} :~ } % numbered-entry-format
+    {} % numberless-entry-format
+    {\titlerule*{.}\contentspage} % filler-page-format
+} 
