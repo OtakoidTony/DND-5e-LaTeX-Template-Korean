@@ -24,7 +24,7 @@ DKSA의 [D&D 5판 번역](https://www.dndkr.com/support)과 일관성을 맞추�
 
 ## 설치
 
-크게 두 가지 설치 방식이 있습니다.\\*
+크게 두 가지 설치 방식이 있습니다.\
 별도 설치 없이 저장소를 클론한 후 해당 디렉토리 내에서 바로 LaTeX 명령어를 사용해 예제 파일을 빌드할 수도 있습니다.
 
 ### `TEXMFHOME`을 이용한 사용자 설치 (권장)
@@ -60,8 +60,8 @@ DKSA의 [D&D 5판 번역](https://www.dndkr.com/support)과 일관성을 맞추�
 다음 [링크](https://www.overleaf.com/latex/templates/d-and-d-5e-latex-korean-template/dczdnwwcxbzt)에서 템플릿을 불러올 수도 있고 아래
 방법을 통해 직접 프로젝트를 생성할 수도 있습니다.
 
-1. 윗쪽의 =]‘Clone or download* 버튼을 클릭해 이 GitHub 저장소를 ZIP 파일로 다운받습니다.
-2. Overleaf에서 *New Project* 버튼을 클릭한 후 *Upload Project*를 선택합니다 이 저장소에서 다운받은 ZIP .
+1. 윗쪽의 *Clone or download* 버튼을 클릭해 이 GitHub 저장소를 ZIP 파일로 다운받습니다.
+2. Overleaf에서 *New Project* 버튼을 클릭한 후 *Upload Project*를 선택합니다 이 저장소에서 다운받은 ZIP 파일을 업로드합니다.
 
 ## 사용법
 
