@@ -47,7 +47,7 @@ DKSA의 [D&D 5판 번역](https://www.dndkr.com/support)과 일관성을 맞추�
 
     ```sh
     cd "$(kpsewhich -var-value TEXMFHOME)"
-    curl -o dndko.tds.zip https://github.com/ShoyuVanilla/DND-5e-LaTeX-Template-Korean/releases/latest
+    curl -Lo dndko.tds.zip https://github.com/ShoyuVanilla/DND-5e-LaTeX-Template-Korean/releases/download/0.1.0/dndko-0.1.0.tds.zip
     bsdtar --strip-components=1 -xvf dndko.tds.zip
     rm dndko.tds.zip
     ```
